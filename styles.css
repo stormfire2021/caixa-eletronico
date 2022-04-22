@@ -144,13 +144,14 @@ input[type=number]::-webkit-inner-spin-button {
   display: flex;
   align-items: center;
   justify-content: center;
+  color: rgb(253, 250, 250);
 }
 
 .box-footer a {
   font-size: 22px;
   font-weight: bold;
   text-decoration: none;
-  color: #0a4d28;
+  color: #fffdfd;
   margin: 5px;
 }
 
