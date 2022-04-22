@@ -1,83 +1,75 @@
 /* 
-autor = Fabiula Pellicciotti
+author Fabiula Pellicciotti
 */
 
-/*a função simula um saque de caixa eletronico, apenas calculando quantas notas
-o usuario recebera de cada valor, de acordo com o valor digitado 
- */
+/*
+Função que simula o saque de um valor inteiro em um caixa eletronico
+*/
 
-function caixaEletronico(){
-    var verifica = isNum(document.getElementById('valor').value)
-    
-    if(verifica == true){ //valida se digitou um numero inteiro
-     alert("Valor digitado não é inteiro !");
-    }else if (saque > 10000) { //valida se não digitou valor acima do permitido para saque diario
-     alert("Valor maior que o permitido para saque diario.");
-    } else if (valorSaque < 1) {
-	 alert("Valor menor que 2, não é permitido!");
-	} else{
-       //recebe o valor 
-       var saque = document.getElementById('valor').value
-       // array de tipos de notas
-       let notas = [100,50,20,10,5,2]
-       //imprime a frase inicial da quantidade de notas
-       var result = "<br>Quantidade de notas" + "<br>";
-       //variavel de controle
-       var stop = false;
-     
-       for (i = 0; i < notas.length; i++) {
-            if (saque <= 10000 && (saque % 100) == 0 ) { //Calcula a quantidade de notas de 100 e o resto da divisão
-               if (saque >=notas[i]) {
-                   result = result  + parseInt (saque/notas[i])+" Nota(s) de R$ "+notas[i] + "<br>";
-                   stop = true;
-                   saque = saque % notas[i];
-               }
-           }else if (saque <= 10000 && (saque % 50) == 0 ) { //Calcula a quantidade de notas de 50 e o resto da divisão
-               if (saque >=notas[i]) {
-                   result = result  + parseInt (saque/notas[i])+" Nota(s) de R$ "+notas[i] + "<br>";
-                   stop = true;
-                   saque = saque % notas[i];
-               }    
-           } else if (saque <= 10000 && (saque % 20) == 0 ) { //Calcula a quantidade de notas de 20 e o resto da divisão
-               if (saque >=notas[i]) {
-                   result = result  + parseInt (saque/notas[i])+" Nota(s) de R$ "+notas[i] + "<br>";
-                   stop = true;
-                   saque = saque % notas[i];
-               }    
-           } else  if (saque <= 10000 && (saque % 10) == 0 ) { //Calcula a quantidade de notas de 10 e o resto da divisão
-               if (saque >=notas[i]) {
-                   result = result  + parseInt (saque/notas[i])+" Nota(s) de R$ "+notas[i] + "<br>";
-                   stop = true;
-                   saque = saque % notas[i];
-               }    
-           } else  if (saque <= 10000 && (saque % 5) == 0 ) { //Calcula a quantidade de notas de 5 e o resto da divisão
-               if (saque >=notas[i]) {
-                   result = result  + parseInt (saque/notas[i])+" Nota(s) de R$ "+notas[i] + "<br>";
-                   stop = true;
-                   saque = saque % notas[i];
-               }    
-           } else  if (saque <= 10000 && (saque % 2) == 0 ) { //Calcula a quantidade de notas de 2 e o resto da divisão
-               if (saque >=notas[i]) {
-                   result = result  + parseInt (saque/notas[i])+" Nota(s) de R$ "+notas[i] + "<br>";
-                   stop = true;
-                   saque = saque % notas[i];
-               } 
-           } else {
-               stop = false;
-               break;
-           }                     
-       }         
-    }
-        
-    //faz impressão da contagem das notas
-    if (stop == true) {
-    document.getElementById("resultCalc").innerHTML = `<p>${result}</p>` + "<br>";
-    }
-    
+function saque(){
+
+	// variavel que recebe o valor digitado no imput da pagina 
+	let dinheiro = document.getElementById('valor').value
+	// array de notas para verificação no forum
+    let notas = [100,50,20,10,5,2]
+	// variavel que seta o cabeçario da ação
+	var result = "Serão disponibilizadas notas de: <p>";
+	// variavel de controle do for
+    var check = false;
+  
+	// loop que verifica o valor a quantidade de notas que devem ser comutadas
+	for (i = 0; i < notas.length; i++) {
+		if (dinheiro <= 1000 && dinheiro >= 100 || (dinheiro % 100) == 0) { //Calcula a quantidade de notas de 100 e o resto da divisão
+			if (dinheiro >= notas[i]) {
+				result = result  + parseInt (dinheiro/notas[i]) + " - Nota(s) de R$ " + notas[i] + "<p>";
+				check = true;
+				dinheiro = dinheiro % notas[i];
+      		}
+		} else if (dinheiro <= 1000 && (dinheiro % 50) == 0 ) { //Calcula a quantidade de notas de 50 e o resto da divisão
+			if (dinheiro >= notas[i]) {
+				result = result  + parseInt (dinheiro/notas[i]) + " - Nota(s) de R$ " + notas[i] + "<p>";
+				check = true;
+				dinheiro = dinheiro % notas[i];
+      		}
+		} else if (dinheiro <= 1000 && (dinheiro % 20) == 0 ) { //Calcula a quantidade de notas de 20 e o resto da divisão
+			if (dinheiro >=notas[i]) {
+				result = result  + parseInt (dinheiro/notas[i]) + " - Nota(s) de R$ " + notas[i] + "<p>";
+				check = true;
+				dinheiro = dinheiro % notas[i];
+      		}
+		} else if (dinheiro <= 1000 && (dinheiro % 10) == 0 ) { //Calcula a quantidade de notas de 10 e o resto da divisão 
+			if (dinheiro >=notas[i]) {
+				result = result  + parseInt (dinheiro/notas[i]) + " - Nota(s) de R$ " + notas[i] + "<p>";
+				check = true;
+				dinheiro = dinheiro % notas[i];
+      		}
+		} else if (dinheiro <= 1000 && (dinheiro % 5) == 0 ) { //Calcula a quantidade de notas de 5 e o resto da divisão
+			if (dinheiro >=notas[i]) {
+				result = result  + parseInt (dinheiro/notas[i]) + " - Nota(s) de R$ " + notas[i] + "<p>";
+				check = true;
+				dinheiro = dinheiro % notas[i];
+      		}
+		}else if (dinheiro <= 1000 && (dinheiro % 2) == 0 ) { //Calcula a quantidade de notas de 2 e o resto da divisão
+			if (dinheiro >=notas[i]) {
+				result = result  + parseInt (dinheiro/notas[i]) + " - Nota(s) de R$ " + notas[i] + "<p>";
+				check = true;
+				dinheiro = dinheiro % notas[i];
+      		}
+		}else {
+			check = false;
+			break;
+		}
+	}
 	
+     
+	if (check == true) { // imprime o resultado na pagina 
+		document.getElementById("resultado").innerHTML = `<p>${result}</p>` + "<br>";
+	}else if (dinheiro > 1000) { // imprime uma mensagem de erro na pagina se o valor digitado for maior q o limite
+		document.getElementById("resultado").innerHTML = "<p>Valor máximo para saque é R$ 1000</p>"
+	} else if (dinheiro < 2) { // imprime uma mensagem de erro na pagina se o valor for menor do q o limite das notas
+		document.getElementById("resultado").innerHTML = "<p>Valor mínimo para saque é R$ 2</p>"
+	}else if ((dinheiro % 2) != 0  && (dinheiro % 5) != 0 )  { // imprime uma mensagem de erro na pagina caso os valores digitados estejam fora do padrao 
+		document.getElementById("resultado").innerHTML = "<p> Valores Invalidos </p>"
+	}
 }
 
-//função que verifica se eh um numero inteiro
-function isNum(val){
-    return !isNaN(val)
-}
